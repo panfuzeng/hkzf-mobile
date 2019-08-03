@@ -37,7 +37,6 @@ class Home extends React.Component {
                 selectedIcon={<i className={`iconfont ${item.icon}`} />}
                 selected={this.state.selectedTab === item.selected}
                 onPress={() => {
-                  console.log(this.props)
                   this.setState({
                     selectedTab: item.selected
                   })
