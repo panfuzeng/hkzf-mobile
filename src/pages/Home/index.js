@@ -19,7 +19,13 @@ class Home extends React.Component {
       selectedTab: props.location.pathname
     }
   }
-
+  componentDidUpdate(prev) {
+    if (prev.location.pathname !== this.props.location.pathname) {
+      this.setState({
+        selectedTab: this.props.location.pathname
+      })
+    }
+  }
   render() {
     return (
       <div className="index">
@@ -37,9 +43,9 @@ class Home extends React.Component {
                 selectedIcon={<i className={`iconfont ${item.icon}`} />}
                 selected={this.state.selectedTab === item.selected}
                 onPress={() => {
-                  this.setState({
-                    selectedTab: item.selected
-                  })
+                  // this.setState({
+                  //   selectedTab: item.selected
+                  // })
                   this.props.history.push(item.selected)
                 }}
               />

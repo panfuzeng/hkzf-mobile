@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  touch-action: pan-y;
+  box-sizing: border-box;
 }
 
 body {
@@ -10,7 +12,8 @@ body {
   background-color: #fff;
 }
 html,
-body {
+body,
+#root {
   height: 100%;
 }
 a {
