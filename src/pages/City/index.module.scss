@@ -1,0 +1,47 @@
+.city {
+  height: 100%;
+  padding-top: 45px;
+  :global {
+    // 城市列表
+    .city-item {
+      .title {
+        font-size: 15px;
+        color: rgb(14, 45, 221);
+        padding: 10px 15px;
+      }
+      .name {
+        height: 50px;
+        line-height: 50px;
+        padding: 0 15px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        font-size: 12px;
+      }
+    }
+    .right {
+      position: absolute;
+      right: 10px;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+      text-align: center;
+      color: rgb(14, 45, 221);
+
+      li {
+        flex: 1;
+
+        .active {
+          color: #fff;
+          font-size: 12px;
+          width: 15px;
+          height: 15px;
+          line-height: 15px;
+          border-radius: 100%;
+          display: inline-block;
+          background-color: #21b97a;
+        }
+      }
+    }
+  }
+}

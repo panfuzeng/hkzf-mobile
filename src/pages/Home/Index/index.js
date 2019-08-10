@@ -2,11 +2,12 @@ import React from 'react'
 import { Carousel, Flex, Grid } from 'antd-mobile'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import './index.scss'
+import style from './index.module.scss'
 import Nav1 from 'assets/images/nav-1.png'
 import Nav2 from 'assets/images/nav-2.png'
 import Nav3 from 'assets/images/nav-3.png'
 import Nav4 from 'assets/images/nav-4.png'
+import { getCurrenCity } from 'utils'
 const navList = [
   { title: '整租', path: '/home/house', imgSrc: Nav1 },
   { title: '合租', path: '/home/house', imgSrc: Nav2 },
@@ -46,6 +47,7 @@ class Index extends React.Component {
       })
     }
   }
+  // 获取最新资讯
   async getNews() {
     const res = await axios.get(
       'http://localhost:8080/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
@@ -57,25 +59,13 @@ class Index extends React.Component {
       })
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.getSwiper()
     this.getGroup()
     this.getNews()
-    const myCity = new window.BMap.LocalCity()
-    myCity.get(async resule => {
-      const name = resule.name
-      const res = await axios.get('http://localhost:8080/area/info', {
-        params: {
-          name: name
-        }
-      })
-      const { status, body } = res.data
-      if (status === 200) {
-        localStorage.setItem('cityName', JSON.stringify(body))
-        this.setState({
-          cityName: body.label
-        })
-      }
+    const city = await getCurrenCity()
+    this.setState({
+      cityName: city.label
     })
   }
   // 渲染轮播图
@@ -210,7 +200,7 @@ class Index extends React.Component {
   }
   render() {
     return (
-      <div className="index">
+      <div className={style.index}>
         <div className="banner">
           {/* 调用轮播图 */}
           {/* 搜索框 */}
